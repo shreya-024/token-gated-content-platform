@@ -28,15 +28,15 @@ token-gated-content-access/
 │   └── package.json
 └── README.md
 
-````
+```
 ## ⚙️ Prerequisites
 
 1. **Node.js** (>=18)
 2. **Soroban CLI** installed  
    ```
    cargo install --locked soroban-cli
-   
-````
+   ```
+
 3. **Freighter Wallet** browser extension
 4. **Testnet Account** created at [https://laboratory.stellar.org/#account-creator?network=test](https://laboratory.stellar.org/#account-creator?network=test)
 5. **WASM Contract deployed** on Stellar Testnet
@@ -50,7 +50,7 @@ token-gated-content-access/
 
 ### 1. Clone Repository
 
-
+```
 git clone https://github.com/shreya-024/token-gated-content-access.git
 cd token-gated-content-access
 ```
@@ -153,7 +153,7 @@ soroban contract invoke \
 
 Revoke access:
 
-```
+```bash
 soroban contract invoke \
   --id <CONTRACT_ID> \
   --source admin \
@@ -164,7 +164,7 @@ soroban contract invoke \
 
 Check access:
 
-```
+```bash
 soroban contract invoke \
   --id <CONTRACT_ID> \
   --source admin \
@@ -201,4 +201,6 @@ soroban contract invoke \
 * Integrate Stellar Horizon API for asset-based access control.
 * Deploy backend to cloud and host frontend on Vercel/Netlify.
 
+
+![Contract Details](image-1.png)
 
