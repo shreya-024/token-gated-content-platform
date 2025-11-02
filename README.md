@@ -4,173 +4,200 @@ A minimal **token-gated access** system built on **Stellar Soroban smart contrac
 Only users with valid access (granted via contract or token ownership) can view gated content.  
 Wallet authentication and contract interaction are handled via **Freighter Wallet** and **Soroban CLI**.
 
----
 
 ## 🧩 Project Structure
+```
+
 token-gated-content-access/
 │
-├── access_contract/ # Soroban contract (WASM + deployment commands)
-├── backend/ # Node.js backend server
-│ └── index.js # Executes Soroban CLI commands via REST API
-├── frontend/ # React frontend (Vite)
-│ ├── src/
-│ │ ├── Home.jsx # Wallet connect + access check
-│ │ ├── Dashboard.jsx # Protected content
-│ │ ├── NoAccess.jsx # Fallback screen for denied users
-│ │ └── App.jsx # Routing setup
-│ └── package.json
+├── access_contract/          # Soroban contract (WASM + deployment commands)
+├── backend/                  # Node.js backend server
+│   └── index.js              # Executes Soroban CLI commands via REST API
+├── frontend/                 # React frontend (Vite)
+│   ├── src/
+│   │   ├── Home.jsx          # Wallet connect + access check
+│   │   ├── Dashboard.jsx     # Protected content
+│   │   ├── NoAccess.jsx      # Fallback screen for denied users
+│   │   └── App.jsx           # Routing setup
+│   └── package.json
 └── README.md
 
-yaml
-Copy code
-
----
+````
 
 ## ⚙️ Prerequisites
 
 1. **Node.js** (>=18)
 2. **Soroban CLI** installed  
-   ```bash
+   ```
    cargo install --locked soroban-cli
-Freighter Wallet browser extension
+````
 
-Testnet Account created at https://laboratory.stellar.org/#account-creator?network=test
+3. **Freighter Wallet** browser extension
+4. **Testnet Account** created at [https://laboratory.stellar.org/#account-creator?network=test](https://laboratory.stellar.org/#account-creator?network=test)
+5. **WASM Contract deployed** on Stellar Testnet
+   Example contract ID:
 
-WASM Contract deployed on Stellar Testnet
-Example contract ID:
+   ```
+   CDVBQS4QEX3Z3RHIMGG3JDKL2SRPG7WXOP4YOKAGTEHMA2YSFJSEKQDT
+   ```
 
-nginx
-Copy code
-CDVBQS4QEX3Z3RHIMGG3JDKL2SRPG7WXOP4YOKAGTEHMA2YSFJSEKQDT
-🚀 Setup Instructions
-1. Clone Repository
-bash
-Copy code
-git clone https://github.com/<your-username>/token-gated-content-access.git
+
+
+## 🚀 Setup Instructions
+
+### 1. Clone Repository
+
+```
+git clone https://github.com/shreya-024/token-gated-content-access.git
 cd token-gated-content-access
-2. Configure Environment
-Create .env in backend/:
+```
 
-ini
-Copy code
+### 2. Configure Environment
+
+Create `.env` in `backend/`:
+
+```
 PORT=5000
-Ensure your Soroban CLI has an admin identity:
+```
 
-bash
-Copy code
+Ensure your Soroban CLI has an **admin identity**:
+
+```
 soroban keys generate admin
 soroban keys ls
-🖥️ Backend Setup
+```
+
+---
+
+## 🖥️ Backend Setup
+
 Go to backend directory:
 
-bash
-Copy code
+```
 cd backend
 npm install
-Edit index.js if needed:
+```
 
-js
-Copy code
+Edit `index.js` if needed:
+
+```js
 const CONTRACT_ID = "CDVBQS4QEX3Z3RHIMGG3JDKL2SRPG7WXOP4YOKAGTEHMA2YSFJSEKQDT";
+```
+
 Start backend:
 
-bash
-Copy code
+```
 node index.js
+```
+
 Expected output:
 
-nginx
-Copy code
+```
 Backend running on port 5000
-🌐 Frontend Setup
+```
+
+
+
+## 🌐 Frontend Setup
+
 Go to frontend directory:
 
-bash
-Copy code
+```
 cd ../frontend
 npm install
 npm run dev
+```
+
 Access frontend at:
 
-arduino
-Copy code
+```
 http://localhost:5173/
-🔐 How It Works
-User clicks Connect Freighter Wallet.
+```
 
-Frontend requests wallet address via Freighter API.
 
-Sends request to backend:
+## 🔐 How It Works
 
-pgsql
-Copy code
-GET /api/has-access/:address
-Backend runs Soroban CLI:
+1. User clicks **Connect Freighter Wallet**.
+2. Frontend requests wallet address via Freighter API.
+3. Sends request to backend:
 
-bash
-Copy code
-soroban contract invoke \
---id <CONTRACT_ID> \
---source admin \
---network-passphrase "Test SDF Network ; September 2015" \
---rpc-url https://soroban-testnet.stellar.org \
--- has_access --who <address>
-Returns true or false — frontend navigates to /dashboard or /no-access.
+   ```
+   GET /api/has-access/:address
+   ```
+4. Backend runs Soroban CLI:
 
-🧾 Admin Commands
+   ```bash
+   soroban contract invoke \
+   --id <CONTRACT_ID> \
+   --source admin \
+   --network-passphrase "Test SDF Network ; September 2015" \
+   --rpc-url https://soroban-testnet.stellar.org \
+   -- has_access --who <address>
+   ```
+5. Returns `true` or `false` — frontend navigates to `/dashboard` or `/no-access`.
+
+
+## 🧾 Admin Commands
+
 Grant access:
 
-bash
-Copy code
+```bash
 soroban contract invoke \
   --id <CONTRACT_ID> \
   --source admin \
   --network-passphrase "Test SDF Network ; September 2015" \
   --rpc-url https://soroban-testnet.stellar.org \
   -- grant --who <USER_ADDRESS> --send=yes
+```
+
 Revoke access:
 
-bash
-Copy code
+```
 soroban contract invoke \
   --id <CONTRACT_ID> \
   --source admin \
   --network-passphrase "Test SDF Network ; September 2015" \
   --rpc-url https://soroban-testnet.stellar.org \
   -- revoke --who <USER_ADDRESS> --send=yes
+```
+
 Check access:
 
-bash
-Copy code
+```
 soroban contract invoke \
   --id <CONTRACT_ID> \
   --source admin \
   --network-passphrase "Test SDF Network ; September 2015" \
   --rpc-url https://soroban-testnet.stellar.org \
   -- has_access --who <USER_ADDRESS>
-🧪 Testing with Multiple Wallets
-Open the site in Browser A (admin Freighter wallet).
+```
 
-Grant access to another wallet (Browser B).
 
-Open the site in Browser B (second Freighter wallet).
+## 🧪 Testing with Multiple Wallets
 
-Click Connect Freighter Wallet → it will navigate to:
+1. Open the site in **Browser A** (admin Freighter wallet).
+2. Grant access to another wallet (Browser B).
+3. Open the site in **Browser B** (second Freighter wallet).
+4. Click **Connect Freighter Wallet** → it will navigate to:
 
-✅ /dashboard → if access granted
+   * ✅ `/dashboard` → if access granted
+   * ❌ `/no-access` → if access denied
 
-❌ /no-access → if access denied
 
-🧰 Troubleshooting
-Issue	Cause	Fix
-error: unrecognized subcommand 'balance_of'	Wrong contract command	Use has_access, not balance_of
-404 RPC error	Wrong --rpc-url	Use https://soroban-testnet.stellar.org
-Access denied even after grant	Forgot --send=yes	Add --send=yes for state-changing calls
-Freighter not connecting	Wrong network	Set Freighter to TESTNET
+## 🧰 Troubleshooting
 
-🪙 Future Extensions
-Replace manual grant/revoke with token ownership check (balance_of from token contract).
+| Issue                                         | Cause                  | Fix                                       |
+| --------------------------------------------- | ---------------------- | ----------------------------------------- |
+| `error: unrecognized subcommand 'balance_of'` | Wrong contract command | Use `has_access`, not `balance_of`        |
+| `404 RPC error`                               | Wrong `--rpc-url`      | Use `https://soroban-testnet.stellar.org` |
+| Access denied even after grant                | Forgot `--send=yes`    | Add `--send=yes` for state-changing calls |
+| Freighter not connecting                      | Wrong network          | Set Freighter to **TESTNET**              |
 
-Integrate Stellar Horizon API for asset-based access control.
 
-Deploy backend to cloud and host frontend on Vercel/Netlify.
+## 🪙 Future Extensions
+
+* Replace manual grant/revoke with **token ownership check** (`balance_of` from token contract).
+* Integrate Stellar Horizon API for asset-based access control.
+* Deploy backend to cloud and host frontend on Vercel/Netlify.
+
+
