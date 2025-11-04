@@ -161,16 +161,16 @@ http://localhost:5173/
 ## 📚 Documentation & Media
 
 ### 🎥 Demo Video
-- [![Watch Demo](images/home.png)](demo.mp4)
+- [![Watch Demo](images/video.png)](demo.mp4)
 
 ### 🖼️ Screenshots
 <p align="center">
-  <img src="images/dashboard.png" width="300"/>
-  <img src="images/noaccess.png" width="300"/>
+  <img src="images/dashboard.png" width="400"/>
+  <img src="images/noaccess.png" width="400"/>
 </p>
-<p>
-  <img src="images/pdf.png" width="300"/>
-  <img src="images/api.png" width="300"/>
+<p align="center">
+  <img src="images/pdf.png" width="400"/>
+  <img src="images/api.png" width="400"/>
 </p>
 
 ---
