@@ -1,9 +1,9 @@
 # Token-Gated Content Access (Stellar Soroban + Freighter)
-```md
+
 A minimal **token-gated access** system built on **Stellar Soroban smart contracts**.  
 Only users holding a specific token on Stellar Testnet can view gated content.  
 Wallet authentication and contract interaction are handled via **Freighter Wallet** and **Soroban CLI**.
-```
+
 ---
 
 ## 🧩 Project Structure
@@ -158,9 +158,19 @@ http://localhost:5173/
 
 ---
 
-## 🎥 Demo
+## 📚 Documentation & Media
 
-<video src="demo video.mp4" controls width="700"></video>
+### 🎥 Demo Video
+- [!Watch Demo(images/home.png)](demo/demo.mp4)
+
+### 🖼️ Screenshots
+| Page | Preview |
+|------|----------|
+| Home | ![Home](images/home.png) |
+| Dashboard | ![Dashboard](images/dashboard.png) |
+| No Access | ![No Access](images/noaccess.png) |
+| PdfPage | ![Pdf Page](images/pdf.png) |
+| APIPage | ![API Page](images/api.png) |
 
 ---
 
