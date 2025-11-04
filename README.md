@@ -161,7 +161,7 @@ http://localhost:5173/
 ## 📚 Documentation & Media
 
 ### 🎥 Demo Video
-- [!Watch Demo(images/home.png)](demo/demo.mp4)
+- [![Watch Demo](images/home.png)](demo.mp4)
 
 ### 🖼️ Screenshots
 | Page | Preview |
@@ -183,5 +183,5 @@ http://localhost:5173/
 | **Network**       | Stellar Testnet                                          |
 | **Contract ID**   | CDVBQS4QEX3Z3RHIMGG3JDKL2SRPG7WXOP4YOKAGTEHMA2YSFJSEKQDT |
 
-![Contract Details](image.png)
+![Contract Details](images/image.png)
 
