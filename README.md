@@ -1,19 +1,14 @@
-Here’s your cleaned and optimized `README.md` — same structure, consistent formatting, no admin/grant/revoke commands, and aligned with a **pure token-based access** system.
-
----
-
-```md
 # Token-Gated Content Access (Stellar Soroban + Freighter)
-
+```md
 A minimal **token-gated access** system built on **Stellar Soroban smart contracts**.  
 Only users holding a specific token on Stellar Testnet can view gated content.  
 Wallet authentication and contract interaction are handled via **Freighter Wallet** and **Soroban CLI**.
-
+```
 ---
 
 ## 🧩 Project Structure
-```
 
+````
 token-gated-content-access/
 │
 ├── access_contract/          # Soroban contract (WASM + deployment commands)
@@ -27,7 +22,6 @@ token-gated-content-access/
 │   │   └── App.jsx           # Routing setup
 │   └── package.json
 └── README.md
-
 ````
 
 ---
@@ -38,7 +32,7 @@ token-gated-content-access/
 2. **Soroban CLI** installed  
    ```bash
    cargo install --locked soroban-cli
-````
+   ```
 
 3. **Freighter Wallet** browser extension
 4. **Testnet Account** created at [Stellar Laboratory](https://laboratory.stellar.org/#account-creator?network=test)
