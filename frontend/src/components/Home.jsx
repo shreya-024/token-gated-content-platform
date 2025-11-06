@@ -68,7 +68,7 @@ export default function Home() {
         }}
       />
       <div className="home-container">
-        <h1 className="home-title">Token Gated Access</h1>
+        <h1 className="home-title">Token Gated Content Platform</h1>
         <p className="home-subtext">
           Connect your wallet to verify token ownership and unlock content.
         </p>
