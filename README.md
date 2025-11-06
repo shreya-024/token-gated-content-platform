@@ -1,6 +1,6 @@
-# Token-Gated Content Access (Stellar Soroban + Freighter)
+# Token-Gated Content Platform (Stellar Soroban + Freighter)
 
-A minimal **token-gated access** system built on **Stellar Soroban smart contracts**.  
+A minimal **token-gated content platform** system built on **Stellar Soroban smart contracts**.  
 Only users holding a specific token on Stellar Testnet can view gated content.  
 Wallet authentication and contract interaction are handled via **Freighter Wallet** and **Soroban CLI**.
 
@@ -9,7 +9,7 @@ Wallet authentication and contract interaction are handled via **Freighter Walle
 ## 🧩 Project Structure
 
 ````
-token-gated-content-access/
+token-gated-content-platform/
 │
 ├── access_contract/          # Soroban contract (WASM + deployment commands)
 ├── backend/                  # Node.js backend server
